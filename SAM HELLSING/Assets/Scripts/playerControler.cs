@@ -8,6 +8,7 @@ public class ControladorDeJugador : MonoBehaviour
     public float fuerzaSalto;
     public LayerMask capaSuelo;
     public int saltosMaximos;
+    public AudioClip sonidSalto;
 
     private Rigidbody2D rgby;//cacheado de componeses
     private BoxCollider2D boxCollider;
@@ -50,6 +51,7 @@ public class ControladorDeJugador : MonoBehaviour
             saltosRestantes--;
             rgby.velocity = new Vector2 (rgby.velocity.x, 0f);
             rgby.AddForce(Vector2.up*fuerzaSalto, ForceMode2D.Impulse);
+            AudioManager.Instance.ReproducirSonido(sonidSalto);
         }
     }
 

@@ -6,7 +6,7 @@ public class Coin : MonoBehaviour
 {
     // Start is called before the first frame update
     public int valor = 1;
-    public GameManager gameManger;
+    public AudioClip sonidoCoin;
     void Start()
     {
         
@@ -18,12 +18,12 @@ public class Coin : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
-    {// basia¡camente comprbar que si es tocada por el jugador se destrute
-        //Debug.Log("Pasaste por la moneda"); comproba si se pasa
+    {
         if (collision.CompareTag("Player"))
         {
-            gameManger.SumarPuntos(valor);
+            GameManager.Instance.SumarPuntos(valor);
             Destroy(this.gameObject);
+            AudioManager.Instance.ReproducirSonido(sonidoCoin);
         }
     }
 }
