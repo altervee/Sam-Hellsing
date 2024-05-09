@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControladorDeJugador : MonoBehaviour
+public class playerControler : MonoBehaviour
 {
+    public float fuerzaGolpe;
     public float velocidad;
     public float fuerzaSalto;
     public LayerMask capaSuelo;
@@ -15,6 +16,7 @@ public class ControladorDeJugador : MonoBehaviour
     private bool mirarDerecha = true;
     private int saltosRestantes;
     private Animator animator;
+    private bool puedeMoverse = true;
 
 
 
@@ -37,6 +39,10 @@ public class ControladorDeJugador : MonoBehaviour
     bool EstaSuelo()
     {
         RaycastHit2D rycasHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
+        if (rycasHit.collider != null && animator.GetBool("isJumping"))
+        {
+            animator.SetBool("isJumping", false);
+        }
         return rycasHit.collider != null;
     }
     void ProcesarSalto()
@@ -52,15 +58,20 @@ public class ControladorDeJugador : MonoBehaviour
             rgby.velocity = new Vector2 (rgby.velocity.x, 0f);
             rgby.AddForce(Vector2.up*fuerzaSalto, ForceMode2D.Impulse);
             AudioManager.Instance.ReproducirSonido(sonidSalto);
+            animator.SetBool("isJumping", true);
         }
     }
 
     void ProcesarMovimiento()
     {
+        if (!puedeMoverse)
+        {
+            return;
+        }
         // Obtener la entrada horizontal.
         
         float inputHorizontal = Input.GetAxis("Horizontal");
-        if(inputHorizontal != 0)
+        if(inputHorizontal != 0 && EstaSuelo())
         {
             animator.SetBool("isWalking", true);
         }
@@ -81,4 +92,27 @@ public class ControladorDeJugador : MonoBehaviour
             transform.localScale= new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
+    public void AplicarGolpe()
+    {
+        puedeMoverse = false;
+
+        Vector2 direccionGolpe = mirarDerecha ? Vector2.left : Vector2.right;
+
+        rgby.AddForce(direccionGolpe * fuerzaGolpe, ForceMode2D.Impulse);
+
+        StartCoroutine(EsperarYActivarMovimiento());
+    }
+
+    IEnumerator EsperarYActivarMovimiento()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        while (!EstaSuelo())
+        {
+            yield return null;
+        }
+
+        puedeMoverse = true;
+    }
+
 }
