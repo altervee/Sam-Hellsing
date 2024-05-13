@@ -114,5 +114,11 @@ public class playerControler : MonoBehaviour
 
         puedeMoverse = true;
     }
+    public void LlevarAJugadorAPosicion(float x, float y)
+    {
+        rgby.velocity = Vector2.zero;
+        transform.position = new Vector2(x, y);
+        puedeMoverse = true;
+    }
 
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb2768222c4ce1249bbca5ad33913536
+guid: c47fe192222f18449ac4947fa8793c29
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: evilskull_Frame_0
+  - name: EvilMushroom_Frame_0
     originalName: 
-    pivot: {x: 0.5555556, y: -0.3478261}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 36
-      width: 18
-      height: 23
-    spriteID: 6c6958639b739c8428d50e9695c6640c
+      x: 36
+      y: 4
+      width: 23
+      height: 31
+    spriteID: 9aa3266ecddac3942b3a1ac3687c513b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -140,19 +140,39 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 36}
-  - name: evilskull_Frame_1
+    uvTransform: {x: 36, y: 4}
+  - name: EvilMushroom_Frame_1
     originalName: 
-    pivot: {x: 0.44444445, y: -0.28}
+    pivot: {x: 0.47826087, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 36
+      y: 43
+      width: 23
+      height: 29
+    spriteID: 507cd1485f8c5654cbfba32ad0fe9841
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 36, y: 43}
+  - name: EvilMushroom_Frame_2
+    originalName: 
+    pivot: {x: 0.45833334, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 18
-      height: 25
-    spriteID: 85d84046d062e4646bbd2517bb7466b3
+      width: 24
+      height: 32
+    spriteID: dadf760715579e9419ff04279d6a1446
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,18 +181,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: evilskull_Frame_2
+  - name: EvilMushroom_Frame_3
     originalName: 
-    pivot: {x: 0.5555556, y: -0.24}
+    pivot: {x: 0.45833334, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 37
-      width: 18
-      height: 25
-    spriteID: 38d8c25c0787de14890552e85f86c904
+      y: 44
+      width: 24
+      height: 32
+    spriteID: 3d54eed83070912438ef0cae62c28847
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -180,19 +200,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 37}
-  - name: evilskull_Frame_3
+    uvTransform: {x: 4, y: 44}
+  - name: EvilMushroom_Frame_4
     originalName: 
-    pivot: {x: 0.44444445, y: -0.28}
+    pivot: {x: 0.45833334, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 70
-      width: 18
-      height: 25
-    spriteID: 8880fb0045d0cc044bae0d04adcbc2a5
+      y: 84
+      width: 24
+      height: 30
+    spriteID: fa7f7816c7d9fbe41ae144a18693befe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,76 +220,56 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 70}
-  - name: evilskull_Frame_4
-    originalName: 
-    pivot: {x: 0.5, y: -0.33333334}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 30
-      y: 4
-      width: 18
-      height: 24
-    spriteID: 325dbeede5d9a104d855fa3dcac54315
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 30, y: 4}
+    uvTransform: {x: 4, y: 84}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 379016543
-    name: evilskull
+    guid: -1149626302
+    name: EvilMushroom
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: evilskull_Frame_0
+    - name: EvilMushroom_Frame_0
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 8
-        width: 18
-        height: 23
-      spriteId: 6c6958639b739c8428d50e9695c6640c
-    - name: evilskull_Frame_1
+        x: 5
+        y: 0
+        width: 23
+        height: 31
+      spriteId: 9aa3266ecddac3942b3a1ac3687c513b
+    - name: EvilMushroom_Frame_1
       frameIndex: 1
       cellRect:
-        x: 8
-        y: 7
-        width: 18
-        height: 25
-      spriteId: 85d84046d062e4646bbd2517bb7466b3
-    - name: evilskull_Frame_2
+        x: 5
+        y: 0
+        width: 23
+        height: 29
+      spriteId: 507cd1485f8c5654cbfba32ad0fe9841
+    - name: EvilMushroom_Frame_2
       frameIndex: 2
       cellRect:
-        x: 6
-        y: 6
-        width: 18
-        height: 25
-      spriteId: 38d8c25c0787de14890552e85f86c904
-    - name: evilskull_Frame_3
+        x: 5
+        y: 0
+        width: 24
+        height: 32
+      spriteId: dadf760715579e9419ff04279d6a1446
+    - name: EvilMushroom_Frame_3
       frameIndex: 3
       cellRect:
-        x: 8
-        y: 7
-        width: 18
-        height: 25
-      spriteId: 8880fb0045d0cc044bae0d04adcbc2a5
-    - name: evilskull_Frame_4
+        x: 5
+        y: 0
+        width: 24
+        height: 32
+      spriteId: 3d54eed83070912438ef0cae62c28847
+    - name: EvilMushroom_Frame_4
       frameIndex: 4
       cellRect:
-        x: 7
-        y: 8
-        width: 18
-        height: 24
-      spriteId: 325dbeede5d9a104d855fa3dcac54315
+        x: 5
+        y: 0
+        width: 24
+        height: 30
+      spriteId: fa7f7816c7d9fbe41ae144a18693befe
     linkedCells: []
     parentIndex: -1
   platformSettings: []

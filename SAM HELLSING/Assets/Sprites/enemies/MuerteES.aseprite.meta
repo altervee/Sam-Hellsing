@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb2768222c4ce1249bbca5ad33913536
+guid: fcf2da9320b40f7478f008fa900f17df
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: evilskull_Frame_0
+  - name: MuerteES_Frame_0
     originalName: 
-    pivot: {x: 0.5555556, y: -0.3478261}
+    pivot: {x: 0.5625, y: -0.47619048}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 36
-      width: 18
-      height: 23
-    spriteID: 6c6958639b739c8428d50e9695c6640c
+      x: 42
+      y: 4
+      width: 16
+      height: 21
+    spriteID: 4010089d09acec246a432b99e285fb05
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -140,19 +140,39 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 36}
-  - name: evilskull_Frame_1
+    uvTransform: {x: 42, y: 4}
+  - name: MuerteES_Frame_1
     originalName: 
-    pivot: {x: 0.44444445, y: -0.28}
+    pivot: {x: 0.3846154, y: -0.47619048}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 35
+      width: 13
+      height: 21
+    spriteID: aa252e63040353048a87b9d716aa5c84
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 35}
+  - name: MuerteES_Frame_2
+    originalName: 
+    pivot: {x: 0.53333336, y: -0.30434784}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 18
-      height: 25
-    spriteID: 85d84046d062e4646bbd2517bb7466b3
+      width: 30
+      height: 23
+    spriteID: 01325fdb21142fd44a928139881f5765
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,115 +181,39 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: evilskull_Frame_2
-    originalName: 
-    pivot: {x: 0.5555556, y: -0.24}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 37
-      width: 18
-      height: 25
-    spriteID: 38d8c25c0787de14890552e85f86c904
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 37}
-  - name: evilskull_Frame_3
-    originalName: 
-    pivot: {x: 0.44444445, y: -0.28}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 70
-      width: 18
-      height: 25
-    spriteID: 8880fb0045d0cc044bae0d04adcbc2a5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 70}
-  - name: evilskull_Frame_4
-    originalName: 
-    pivot: {x: 0.5, y: -0.33333334}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 30
-      y: 4
-      width: 18
-      height: 24
-    spriteID: 325dbeede5d9a104d855fa3dcac54315
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 30, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 379016543
-    name: evilskull
+    guid: -2068311872
+    name: MuerteES
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: evilskull_Frame_0
+    - name: MuerteES_Frame_0
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 8
-        width: 18
-        height: 23
-      spriteId: 6c6958639b739c8428d50e9695c6640c
-    - name: evilskull_Frame_1
+        x: 7
+        y: 10
+        width: 16
+        height: 21
+      spriteId: 4010089d09acec246a432b99e285fb05
+    - name: MuerteES_Frame_1
       frameIndex: 1
       cellRect:
-        x: 8
-        y: 7
-        width: 18
-        height: 25
-      spriteId: 85d84046d062e4646bbd2517bb7466b3
-    - name: evilskull_Frame_2
+        x: 11
+        y: 10
+        width: 13
+        height: 21
+      spriteId: aa252e63040353048a87b9d716aa5c84
+    - name: MuerteES_Frame_2
       frameIndex: 2
       cellRect:
-        x: 6
-        y: 6
-        width: 18
-        height: 25
-      spriteId: 38d8c25c0787de14890552e85f86c904
-    - name: evilskull_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 8
+        x: 0
         y: 7
-        width: 18
-        height: 25
-      spriteId: 8880fb0045d0cc044bae0d04adcbc2a5
-    - name: evilskull_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 7
-        y: 8
-        width: 18
-        height: 24
-      spriteId: 325dbeede5d9a104d855fa3dcac54315
+        width: 30
+        height: 23
+      spriteId: 01325fdb21142fd44a928139881f5765
     linkedCells: []
     parentIndex: -1
   platformSettings: []

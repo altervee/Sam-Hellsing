@@ -2,21 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemigo : MonoBehaviour //, IDaño
+public class EnemigoY : MonoBehaviour
 {
+
     // Variables para el primer script
     public float cooldownAtaque;
     private bool puedeAtacar = true;
     private SpriteRenderer spriteRenderer;
+    public float posicionYArriba;
+    public float posicionYAbajo;
+    public float velocidadMovimiento;
 
     // Variables para el segundo script
     [SerializeField] private float vida;
     private Animator animator;
+    private bool moviendoseHaciaArriba = true;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+    }
+    void Update()
+    {
+        // Movimiento entre las dos posiciones
+        float step = velocidadMovimiento * Time.deltaTime;
+        if (moviendoseHaciaArriba)
+        {
+            Vector3 targetPosition = new Vector3(transform.position.x, posicionYArriba, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+            if (transform.position.y >= posicionYArriba)
+            {
+                moviendoseHaciaArriba = false;
+            }
+        }
+        else
+        {
+            Vector3 targetPosition = new Vector3(transform.position.x, posicionYAbajo, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+            if (transform.position.y <= posicionYAbajo)
+            {
+                moviendoseHaciaArriba = true;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
