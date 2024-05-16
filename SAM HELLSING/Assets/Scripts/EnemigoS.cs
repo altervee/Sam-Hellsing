@@ -69,6 +69,8 @@ public class EnemigoS : MonoBehaviour
 
         if (vida <= 0)
         {
+            velocidadMovimiento = 0;
+            puedeAtacar = false;
 
             Muerte();
         }

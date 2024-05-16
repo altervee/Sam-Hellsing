@@ -90,7 +90,8 @@ public class EnemigoY : MonoBehaviour
 
     private void Muerte()
     {
-        // Activar la animación de muerte
+        velocidadMovimiento = 0;
+        puedeAtacar = false;
         animator.SetTrigger("Muerte");
 
         // Retrasar la destrucción del objeto después de un cierto tiempo

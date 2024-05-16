@@ -56,6 +56,7 @@ public class Enemigo : MonoBehaviour //, IDaño
 
         if (vida <= 0)
         {
+            puedeAtacar = false;
             Muerte();
         }
     }
