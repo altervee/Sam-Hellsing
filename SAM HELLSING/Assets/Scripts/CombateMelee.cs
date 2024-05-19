@@ -64,6 +64,14 @@ public class CombateMelee : MonoBehaviour
                     enemigo.TomarDaño(dañoGolpe);
                 }
             }
+            else if (colisionador.CompareTag("EnemigoLobo"))
+            {
+                EnemigoLobo enemigoLobo = colisionador.GetComponent<EnemigoLobo>();
+                if (enemigoLobo != null)
+                {
+                    enemigoLobo.TomarDaño(dañoGolpe);
+                }
+            }
         }
     }
     // ver el circulo del daño del jugador 
