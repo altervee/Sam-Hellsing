@@ -236,6 +236,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1680785489}
     m_Modifications:
+    - target: {fileID: -7535646908258142153, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
+      propertyPath: vida
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7535646908258142153, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
+      propertyPath: cooldownAtaque
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7535646908258142153, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
+      propertyPath: distanciaVision
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -7535646908258142153, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
+      propertyPath: velocidadMovimiento
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7185464965212243886, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
       propertyPath: m_Size.x
       value: 0.56005204
@@ -251,6 +267,10 @@ PrefabInstance:
     - target: {fileID: 7185464965212243886, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
       propertyPath: m_Offset.y
       value: -0.4354301
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185464965212243886, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7185464965212243886, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -348,6 +368,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8699994162009632422, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1840217072}
     - targetCorrespondingSourceObject: {fileID: 8699994162009632422, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1840217067}
@@ -7491,6 +7514,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1840217072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840217061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fc9e15ab92d644784d0c5f223f4e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownAtaque: 3
+  velocidadMovimiento: 5
+  fuerzaSalto: 2
+  distanciaVision: 20
+  vida: 3
 --- !u!4 &1858557709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4342626926949501451, guid: 89a5e644e1662034382a6ef100cad4c2, type: 3}

@@ -6,11 +6,9 @@ public class EnemigoLobo : MonoBehaviour
 {
     [SerializeField] private float cooldownAtaque;
     public float velocidadMovimiento;
+    public float fuerzaSalto;
     public float distanciaVision;
-    public float distanciaRetroceso;
-
     [SerializeField] private float vida;
-    [SerializeField] private float ataque;
 
     private Rigidbody2D rb;
     private Transform jugador;
@@ -18,38 +16,64 @@ public class EnemigoLobo : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool puedeAtacar = true;
     private bool estaVivo = true;
-    private float ataqueOriginal;
-    public AudioClip sonidMovimientoSlime;
+    //public AudioClip sonidMovimientoSlime;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jugador = GameObject.FindGameObjectWithTag("Player")?.transform;
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        ataqueOriginal = ataque; // Guardar el valor original del ataque
-
-        if (animator == null)
+        if (rb == null)
         {
-            Debug.LogError("No se encontró el componente Animator en el objeto " + gameObject.name);
+            Debug.LogError("Rigidbody2D no encontrado en el objeto " + gameObject.name);
         }
 
-        if (jugador == null)
+        GameObject jugadorObject = GameObject.FindGameObjectWithTag("Player");
+        if (jugadorObject != null)
         {
-            Debug.LogError("No se encontró ningún objeto con la etiqueta 'Player'");
+            jugador = jugadorObject.transform;
+        }
+        else
+        {
+            Debug.LogError("No se encontró un objeto con la etiqueta 'Player' en la escena.");
+        }
+
+        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("Animator no encontrado en el objeto " + gameObject.name);
+        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer no encontrado en el objeto " + gameObject.name);
         }
     }
 
     void Update()
     {
-        if (!estaVivo || animator == null || jugador == null) return;
+        if (jugador == null || rb == null || animator == null)
+        {
+            return; // No hacer nada si faltan componentes esenciales
+        }
 
         // Mirar hacia el jugador
         Vector2 direccionJugador = jugador.position - transform.position;
-        if (direccionJugador.magnitude <= distanciaVision)
+        float distanciaJugador = direccionJugador.magnitude;
+
+        // Imprimir "CERCA" o "LEJOS" según la distancia al jugador
+        if (distanciaJugador <= 3.0f)
+        {
+            Debug.Log("CERCA");
+        }
+        else
+        {
+            Debug.Log("LEJOS");
+        }
+
+        if ((distanciaJugador <= distanciaVision) && estaVivo)
         {
             // Establecer la orientación del sprite
-            spriteRenderer.flipX = direccionJugador.x < 0; // Mirar hacia la izquierda si el jugador está a la izquierda
+            spriteRenderer.flipX = direccionJugador.x <= 0;
 
             // Normalizar la dirección para que el enemigo se mueva con una velocidad constante
             Vector2 direccionMovimiento = direccionJugador.normalized;
@@ -57,73 +81,36 @@ public class EnemigoLobo : MonoBehaviour
             // Mover al enemigo
             rb.velocity = direccionMovimiento * velocidadMovimiento;
 
-            // Imprimir la velocidad en la consola para depurar
-            Debug.Log("Velocidad del enemigo: " + rb.velocity);
-
             // Si el jugador está dentro de la distancia de visión, seguir al jugador
-            animator.SetBool("Sigue", true);
-
-            // Activar la animación de ataque si está en proximidad
-            animator.SetBool("Proximidad", direccionJugador.magnitude <= distanciaRetroceso);
+            if (distanciaJugador <= 3.0f)
+            {
+                animator.SetBool("Sigue", false);
+                animator.SetBool("Ataque", true);
+            }
+            else
+            {
+                animator.SetBool("Ataque", false);
+                animator.SetBool("Sigue", true);
+            }
         }
         else
         {
             // Si el jugador está fuera de la distancia de visión, detener la animación de seguimiento
             rb.velocity = Vector2.zero;
             animator.SetBool("Sigue", false);
-            animator.SetBool("Proximidad", false); // Desactivar proximidad cuando no está siguiendo al jugador
+            animator.SetBool("Ataque", false);
         }
-    }
-
-    // Método para la animación de muerte y destrucción del enemigo
-    public void TomarDaño(float daño)
-    {
-        if (!estaVivo)
-            return;
-
-        vida -= daño;
-
-        if (vida <= 0)
-        {
-            estaVivo = false;
-            velocidadMovimiento = 0;
-            puedeAtacar = false;
-
-            Muerte();
-        }
-        else
-        {
-            // Retroceso del enemigo
-            StartCoroutine(Retroceder());
-        }
-    }
-
-    private IEnumerator Retroceder()
-    {
-        Vector2 direccionRetroceso = (transform.position - jugador.position).normalized;
-        Vector2 posicionFinal = (Vector2)transform.position + direccionRetroceso * distanciaRetroceso;
-        float tiempoRetroceso = 0.5f;
-        float tiempoTranscurrido = 0;
-
-        while (tiempoTranscurrido < tiempoRetroceso)
-        {
-            rb.velocity = direccionRetroceso * velocidadMovimiento;
-            tiempoTranscurrido += Time.deltaTime;
-            yield return null;
-        }
-
-        rb.velocity = Vector2.zero;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // Primera parte del script
             if (!puedeAtacar)
                 return;
 
             puedeAtacar = false;
-            ataque = 0; // Deshabilitar ataque durante el cooldown
             Color color = spriteRenderer.color;
             color.a = 0.5f;
             spriteRenderer.color = color;
@@ -136,23 +123,30 @@ public class EnemigoLobo : MonoBehaviour
         }
     }
 
-    void ReactivarAtaque()
+    private void ReactivarAtaque()
     {
         puedeAtacar = true;
-        ataque = ataqueOriginal; // Restaurar el valor original del ataque
+    }
 
-        Color c = spriteRenderer.color;
-        c.a = 1f;
-        spriteRenderer.color = c;
+    public void TomarDaño(float daño)
+    {
+        if (!estaVivo)
+            return;
+
+        vida -= daño;
+
+        if (vida <= 0)
+        {
+            velocidadMovimiento = 0;
+            puedeAtacar = false;
+            Muerte();
+        }
     }
 
     private void Muerte()
     {
-        if (animator != null)
-        {
-            // Activar la animación de muerte
-            animator.SetTrigger("Muerte");
-        }
+        // Activar la animación de muerte
+        animator.SetTrigger("Muerte");
 
         // Retrasar la destrucción del objeto después de un cierto tiempo
         float tiempoDeEspera = 2.0f; // Cambia esto al tiempo que desees

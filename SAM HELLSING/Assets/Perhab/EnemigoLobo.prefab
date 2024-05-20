@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7210287424309035393}
   - component: {fileID: 8249541743674063157}
   - component: {fileID: 7185464965212243886}
-  - component: {fileID: -7535646908258142153}
   - component: {fileID: 7398567419968695847}
   m_Layer: 0
   m_Name: EnemigoLobo
@@ -132,23 +131,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-7535646908258142153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8699994162009632422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65840863bca2f7748ba0c22f8b473a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownAtaque: 1
-  velocidadMovimiento: 2
-  fuerzaSalto: 2
-  distanciaVision: 5
-  vida: 3
 --- !u!50 &7398567419968695847
 Rigidbody2D:
   serializedVersion: 4
