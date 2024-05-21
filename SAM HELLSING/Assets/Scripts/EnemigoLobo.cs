@@ -9,6 +9,7 @@ public class EnemigoLobo : MonoBehaviour
     public float fuerzaSalto;
     public float distanciaVision;
     [SerializeField] private float vida;
+    [SerializeField] private float retrocesoDano; // Nueva variable para la fuerza de retroceso
 
     private Rigidbody2D rb;
     private Transform jugador;
@@ -16,7 +17,8 @@ public class EnemigoLobo : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool puedeAtacar = true;
     private bool estaVivo = true;
-    //public AudioClip sonidMovimientoSlime;
+    private bool enAtaque = false;
+    private bool enRetroceso = false;
 
     void Start()
     {
@@ -51,54 +53,35 @@ public class EnemigoLobo : MonoBehaviour
 
     void Update()
     {
-        if (jugador == null || rb == null || animator == null)
-        {
-            return; // No hacer nada si faltan componentes esenciales
-        }
+        if (!estaVivo) return;
 
         // Mirar hacia el jugador
         Vector2 direccionJugador = jugador.position - transform.position;
         float distanciaJugador = direccionJugador.magnitude;
 
-        // Imprimir "CERCA" o "LEJOS" según la distancia al jugador
-        if (distanciaJugador <= 3.0f)
+
+        if (!enAtaque && !enRetroceso)
         {
-            Debug.Log("CERCA");
-        }
-        else
-        {
-            Debug.Log("LEJOS");
-        }
-
-        if ((distanciaJugador <= distanciaVision) && estaVivo)
-        {
-            // Establecer la orientación del sprite
-            spriteRenderer.flipX = direccionJugador.x <= 0;
-
-            // Normalizar la dirección para que el enemigo se mueva con una velocidad constante
-            Vector2 direccionMovimiento = direccionJugador.normalized;
-
-            // Mover al enemigo
-            rb.velocity = direccionMovimiento * velocidadMovimiento;
-
-            // Si el jugador está dentro de la distancia de visión, seguir al jugador
-            if (distanciaJugador <= 3.0f)
+            if (distanciaJugador <= distanciaVision)
             {
-                animator.SetBool("Sigue", false);
-                animator.SetBool("Ataque", true);
+                // Establecer la orientación del sprite
+                spriteRenderer.flipX = direccionJugador.x <= 0;
+
+                // Normalizar la dirección para que el enemigo se mueva con una velocidad constante
+                Vector2 direccionMovimiento = direccionJugador.normalized;
+
+                // Mover al enemigo
+                rb.velocity = direccionMovimiento * velocidadMovimiento;
+
+                // Si el jugador está dentro de la distancia de visión, seguir al jugador
+                animator.SetBool("Sigue", true);
             }
             else
             {
-                animator.SetBool("Ataque", false);
-                animator.SetBool("Sigue", true);
+                // Si el jugador está fuera de la distancia de visión, detener la animación de seguimiento
+                rb.velocity = Vector2.zero;
+                animator.SetBool("Sigue", false);
             }
-        }
-        else
-        {
-            // Si el jugador está fuera de la distancia de visión, detener la animación de seguimiento
-            rb.velocity = Vector2.zero;
-            animator.SetBool("Sigue", false);
-            animator.SetBool("Ataque", false);
         }
     }
 
@@ -111,6 +94,8 @@ public class EnemigoLobo : MonoBehaviour
                 return;
 
             puedeAtacar = false;
+            enAtaque = true;
+
             Color color = spriteRenderer.color;
             color.a = 0.5f;
             spriteRenderer.color = color;
@@ -119,12 +104,14 @@ public class EnemigoLobo : MonoBehaviour
 
             other.gameObject.GetComponent<playerControler>().AplicarGolpe();
 
+            animator.SetTrigger("Ataque"); // Usar trigger en lugar de bool para la animación de ataque
             Invoke("ReactivarAtaque", cooldownAtaque);
         }
     }
 
     private void ReactivarAtaque()
     {
+        enAtaque = false;
         puedeAtacar = true;
     }
 
@@ -141,21 +128,61 @@ public class EnemigoLobo : MonoBehaviour
             puedeAtacar = false;
             Muerte();
         }
+        else
+        {
+            StartCoroutine(Retroceso());
+        }
+    }
+
+    private IEnumerator Retroceso()
+    {
+        enRetroceso = true;
+
+        // Dirección del retroceso
+        float retrocesoDireccion = retrocesoDano;
+
+        // Distancia total a retroceder
+        float distanciaRetroceso = 20f;
+        float distanciaRetrocedida = 0f;
+
+        // Desactivar la velocidad de movimiento
+        float velocidadOriginal = velocidadMovimiento;
+        velocidadMovimiento = 0;
+
+        while (distanciaRetrocedida < distanciaRetroceso)
+        {
+            // Calcular el desplazamiento en este frame
+            float desplazamiento = retrocesoDano * Time.deltaTime;
+
+            // Asegurarse de no superar la distancia de retroceso
+            if (distanciaRetrocedida + desplazamiento > distanciaRetroceso)
+            {
+                desplazamiento = distanciaRetroceso - distanciaRetrocedida;
+            }
+
+            // Aplicar el desplazamiento
+            rb.MovePosition(rb.position + new Vector2(retrocesoDireccion * desplazamiento, 0));
+            distanciaRetrocedida += desplazamiento;
+
+            yield return null;
+        }
+
+        // Restaurar la velocidad de movimiento
+        velocidadMovimiento = velocidadOriginal;
+        enRetroceso = false;
     }
 
     private void Muerte()
     {
-        // Activar la animación de muerte
-        animator.SetTrigger("Muerte");
+        estaVivo = false;
+        animator.SetTrigger("Muerte"); // Usar trigger para la animación de muerte
 
-        // Retrasar la destrucción del objeto después de un cierto tiempo
         float tiempoDeEspera = 2.0f; // Cambia esto al tiempo que desees
         Invoke("DestruirObjeto", tiempoDeEspera);
     }
 
     private void DestruirObjeto()
     {
-        // Destruir el objeto después de que haya pasado el tiempo de espera
         Destroy(gameObject);
     }
 }

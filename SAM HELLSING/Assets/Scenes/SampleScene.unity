@@ -7531,6 +7531,7 @@ MonoBehaviour:
   fuerzaSalto: 2
   distanciaVision: 20
   vida: 3
+  retrocesoDano: 2
 --- !u!4 &1858557709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4342626926949501451, guid: 89a5e644e1662034382a6ef100cad4c2, type: 3}
