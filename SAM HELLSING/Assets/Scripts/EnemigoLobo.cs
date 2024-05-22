@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemigoLobo : MonoBehaviour
 {
@@ -113,13 +114,14 @@ public class EnemigoLobo : MonoBehaviour
     {
         enAtaque = false;
         puedeAtacar = true;
+        
     }
 
     public void TomarDaño(float daño)
     {
         if (!estaVivo)
             return;
-
+        velocidadMovimiento = velocidadMovimiento + 1; 
         vida -= daño;
 
         if (vida <= 0)
@@ -142,7 +144,7 @@ public class EnemigoLobo : MonoBehaviour
         float retrocesoDireccion = retrocesoDano;
 
         // Distancia total a retroceder
-        float distanciaRetroceso = 20f;
+        float distanciaRetroceso = 2f;
         float distanciaRetrocedida = 0f;
 
         // Desactivar la velocidad de movimiento
@@ -177,7 +179,8 @@ public class EnemigoLobo : MonoBehaviour
         estaVivo = false;
         animator.SetTrigger("Muerte"); // Usar trigger para la animación de muerte
 
-        float tiempoDeEspera = 2.0f; // Cambia esto al tiempo que desees
+        float tiempoDeEspera = 4.0f;
+        SceneManager.LoadScene("Nivel2");
         Invoke("DestruirObjeto", tiempoDeEspera);
     }
 
