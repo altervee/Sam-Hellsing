@@ -17,6 +17,11 @@ public class playerControler : MonoBehaviour
     private int saltosRestantes;
     private Animator animator;
     private bool puedeMoverse = true;
+    RaycastHit2D hit; //plataformas 
+    public Vector3 v3;
+    public LayerMask layer;// detectar la platafora 
+    public float distance; //distancia del raycast
+
 
 
 
@@ -33,6 +38,7 @@ public class playerControler : MonoBehaviour
 
     void Update()
     {
+        Detectar_Plataforma();
         ProcesarMovimiento();
         ProcesarSalto();    
     }
@@ -47,7 +53,7 @@ public class playerControler : MonoBehaviour
     }
     void ProcesarSalto()
     {
-        if(EstaSuelo())
+        if(EstaSuelo()|| CheckCollision)
         {
             saltosRestantes = saltosMaximos;
         }
@@ -119,6 +125,31 @@ public class playerControler : MonoBehaviour
         rgby.velocity = Vector2.zero;
         transform.position = new Vector2(x, y);
         puedeMoverse = true;
+    }
+
+    public void Detectar_Plataforma()
+    {
+        if (CheckCollision)
+        {
+            transform.parent = hit.collider.transform;
+        }
+        else
+        {
+            transform.parent = null;
+        }
+    }
+    bool CheckCollision
+    {
+        get
+        {
+            hit = Physics2D.Raycast(transform.position + v3, transform.up * -1, distance, layer);
+            return hit.collider != null;
+        }
+
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position + v3, transform.up * -1* distance);
     }
 
 }
