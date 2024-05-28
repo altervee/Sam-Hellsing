@@ -45,7 +45,7 @@ public class playerControler : MonoBehaviour
     bool EstaSuelo()
     {
         RaycastHit2D rycasHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
-        if (rycasHit.collider != null && animator.GetBool("isJumping"))
+        if ((rycasHit.collider != null && animator.GetBool("isJumping")) || CheckCollision)
         {
             animator.SetBool("isJumping", false);
         }
@@ -144,6 +144,7 @@ public class playerControler : MonoBehaviour
         {
             hit = Physics2D.Raycast(transform.position + v3, transform.up * -1, distance, layer);
             return hit.collider != null;
+
         }
 
     }
