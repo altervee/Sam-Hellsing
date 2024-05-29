@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7398567419968695847}
   - component: {fileID: 1165198370664749197}
   m_Layer: 0
-  m_Name: EnemigoLobo
+  m_Name: jefe2
   m_TagString: jefe2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

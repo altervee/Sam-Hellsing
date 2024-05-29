@@ -8,6 +8,7 @@ TagManager:
   - EnemigoY
   - EnemigoS
   - EnemigoLobo
+  - jefe2
   layers:
   - Default
   - TransparentFX
