@@ -364,7 +364,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemigoLobo
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1165198370664749197, guid: 4b01b7e8388c94f45b4865c04bd7d35d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1518,6 +1519,11 @@ MonoBehaviour:
     m_Bits: 256
   saltosMaximos: 2
   sonidSalto: {fileID: 8300000, guid: 9580e638f93d0e44c83e2ec29408d5af, type: 3}
+  v3: {x: 0, y: 0, z: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
+  distance: 0
 --- !u!95 &380474455
 Animator:
   serializedVersion: 5

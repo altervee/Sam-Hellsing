@@ -12,6 +12,9 @@ public class Jefe2 : MonoBehaviour
     private bool mirarDerecha = true;
     [Header("Vida")]
     [SerializeField] private float vida;
+    [SerializeField] private Transform controladorGolpe;
+    [SerializeField] private float radioGolpe;
+    [SerializeField] private float dañoAtaque;
     //[SerializeField] private BarraDeVida barraDeVida;
     // Start is called before the first frame update
     void Start()
@@ -43,8 +46,38 @@ public class Jefe2 : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    float distanciaJugador;
+    private void Update()
     {
-        
+
+        if (jugador != null && animator != null)
+        {
+            float distanciaJugador = Vector2.Distance(transform.position, jugador.position);
+            animator.SetFloat("distancia", distanciaJugador);
+        }
+        else
+        {
+            Debug.LogWarning("Jugador o Animator no están asignados.");
+        }
+    }
+    public void Ataque()
+     {
+       Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
+        foreach (Collider2D colision in objetos)
+        {
+            if (colision.CompareTag("Player"))
+            {
+                GameManager.Instance.PerderVida();
+
+                
+                //colision.GetComponent<GameManager>().PerderVida();
+            }
+        }
+
+    }
+    private void OnDrawGizmos()
+    {
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(controladorGolpe.position, radioGolpe);
     }
 }
