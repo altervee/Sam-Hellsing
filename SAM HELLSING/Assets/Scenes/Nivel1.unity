@@ -7536,7 +7536,7 @@ MonoBehaviour:
   velocidadMovimiento: 5
   fuerzaSalto: 2
   distanciaVision: 20
-  vida: 15
+  vida: 3
   retrocesoDano: 2
 --- !u!4 &1858557709 stripped
 Transform:

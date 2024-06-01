@@ -113,8 +113,7 @@ public class EnemigoS : MonoBehaviour
         animator.SetTrigger("Muerte");
 
         // Retrasar la destrucción del objeto después de un cierto tiempo
-        float tiempoDeEspera = 2.0f; // Cambia esto al tiempo que desees
-        Invoke("DestruirObjeto", tiempoDeEspera);
+
     }
 
     private void DestruirObjeto()

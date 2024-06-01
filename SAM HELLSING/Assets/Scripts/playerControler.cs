@@ -77,7 +77,7 @@ public class playerControler : MonoBehaviour
         // Obtener la entrada horizontal.
         
         float inputHorizontal = Input.GetAxis("Horizontal");
-        if(inputHorizontal != 0 && EstaSuelo())
+        if((inputHorizontal != 0 && EstaSuelo())|| CheckCollision)// comprobar que est aen el suelo o en una platafora
         {
             animator.SetBool("isWalking", true);
         }

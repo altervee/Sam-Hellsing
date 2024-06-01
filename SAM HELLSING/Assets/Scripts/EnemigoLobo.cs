@@ -179,13 +179,13 @@ public class EnemigoLobo : MonoBehaviour
         estaVivo = false;
         animator.SetTrigger("Muerte"); // Usar trigger para la animación de muerte
 
-        float tiempoDeEspera = 4.0f;
-        SceneManager.LoadScene("Nivel2");
-        Invoke("DestruirObjeto", tiempoDeEspera);
+        GameManager.Instance.GuardarDatosN1();// GUARADAR LOS DATOS DE LA PUNTUACION 
+
     }
 
     private void DestruirObjeto()
     {
+        SceneManager.LoadScene("Nivel2");
         Destroy(gameObject);
     }
 }

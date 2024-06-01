@@ -30,12 +30,23 @@ public class Jefe2 : MonoBehaviour
         //barraDeVida.CambiarVidaActual(vida)
         if (vida <= 0)
         {
-            animator.SetTrigger("Muerte");
+            
+            Muerte();
         }
     }
     private void Muerte()
     {
+        animator.SetTrigger("Muerte");
+        GameManager.Instance.GuardarDatosN2();// GUARADAR LOS DATOS DE LA PUNTUACION 
+        
+    }
+
+
+    private void DestruirObjeto()
+    {
+        
         Destroy(gameObject);
+        SceneManager.LoadScene("Final");
     }
     public void MirarJugador()
     {
