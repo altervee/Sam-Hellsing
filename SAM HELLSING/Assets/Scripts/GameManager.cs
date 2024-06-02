@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         int recordMuertesN1 = PlayerPrefs.GetInt("RecordMuertesN1", int.MaxValue);
         float recordTiempoN1 = PlayerPrefs.GetFloat("RecordTiempoN1", float.MaxValue);
 
-        if ((PuntosTotales > recordPuntosN1) && (vidas > recordVidasN1)&& (tiempoNivel < recordTiempoN1))
+        if ((PuntosTotales > recordPuntosN1))// && (vidas > recordVidasN1)&& (tiempoNivel < recordTiempoN1) lo ahré solo por puntos 
         {
             PlayerPrefs.SetInt("RecordPuntosN1", PuntosTotales);
             PlayerPrefs.SetInt("RecordVidasN1", vidas);
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         int recordMuertesN2 = PlayerPrefs.GetInt("RecordMuertesN2", int.MaxValue);
         float recordTiempoN2 = PlayerPrefs.GetFloat("RecordTiempoN2", float.MaxValue);
 
-        if ((PuntosTotales > recordPuntosN2)&& (vidas > recordVidasN2)&& (tiempoNivel < recordTiempoN2))
+        if ((PuntosTotales > recordPuntosN2))// solo por puuntos && (vidas > recordVidasN2)&& (tiempoNivel < recordTiempoN2)
         {
             PlayerPrefs.SetInt("RecordPuntosN2", PuntosTotales);
             PlayerPrefs.SetInt("RecordVidasN2", vidas);
