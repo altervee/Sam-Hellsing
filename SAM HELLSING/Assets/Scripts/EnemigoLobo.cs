@@ -10,7 +10,9 @@ public class EnemigoLobo : MonoBehaviour
     public float fuerzaSalto;
     public float distanciaVision;
     [SerializeField] private float vida;
+    private float vidaMax;
     [SerializeField] private float retrocesoDano; // Nueva variable para la fuerza de retroceso
+    [SerializeField] private barraVida barra;// mi barra de vida 
 
     private Rigidbody2D rb;
     private Transform jugador;
@@ -23,6 +25,7 @@ public class EnemigoLobo : MonoBehaviour
 
     void Start()
     {
+        vidaMax = vida;
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
@@ -123,7 +126,7 @@ public class EnemigoLobo : MonoBehaviour
             return;
         velocidadMovimiento = velocidadMovimiento + 1; 
         vida -= daño;
-
+        barra.UpdateHealth(vidaMax, vida);
         if (vida <= 0)
         {
             velocidadMovimiento = 0;

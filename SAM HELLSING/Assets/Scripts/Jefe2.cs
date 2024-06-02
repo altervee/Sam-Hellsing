@@ -12,21 +12,23 @@ public class Jefe2 : MonoBehaviour
     private bool mirarDerecha = true;
     [Header("Vida")]
     [SerializeField] private float vida;
+    private float vidaMax;
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
     [SerializeField] private float dañoAtaque;
-    //[SerializeField] private BarraDeVida barraDeVida;
+    [SerializeField] private barraVida barra;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        //barraDeVida.InicializarBarraDeVida(vida);
+        vidaMax = vida; 
         jugador = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     public void TomarDaño(float daño)
     {
         vida -= daño;
+        barra.UpdateHealth(vidaMax, vida);
         //barraDeVida.CambiarVidaActual(vida)
         if (vida <= 0)
         {
