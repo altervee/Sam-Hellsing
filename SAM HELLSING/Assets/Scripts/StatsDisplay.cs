@@ -31,10 +31,10 @@ public class StatsDisplay : MonoBehaviour
         int totalPuntos = puntosN1 + puntosN2;
         int totalVidas = vidasN1 + vidasN2;
 
-        puntosText.text = "Puntos Totales: " + totalPuntos;
-        vidasText.text = "Vidas Totales: " + totalVidas;
-        tiempoN1Text.text = "Tiempo Nivel 1: " + tiempoN1.ToString("F2") + "s";
-        tiempoN2Text.text = "Tiempo Nivel 2: " + tiempoN2.ToString("F2") + "s";
+        puntosText.text = ": " + totalPuntos;
+        vidasText.text = "s: " + totalVidas;
+        tiempoN1Text.text = ": " + tiempoN1.ToString("F2") + "s";
+        tiempoN2Text.text = ": " + tiempoN2.ToString("F2") + "s";
 
         int recordPuntosN1 = PlayerPrefs.GetInt("RecordPuntosN1", 0);
         int recordPuntosN2 = PlayerPrefs.GetInt("RecordPuntosN2", 0);
@@ -48,10 +48,10 @@ public class StatsDisplay : MonoBehaviour
         int totalRecordPuntos = recordPuntosN1 + recordPuntosN2;
         int totalRecordVidas = recordVidasN1 + recordVidasN2;
 
-        recordPuntosText.text = "Record Puntos: " + totalRecordPuntos;
-        recordVidasText.text = "Record Vidas: " + totalRecordVidas;
-        recordTiempoN1Text.text = "Record Tiempo Nivel 1: " + recordTiempoN1.ToString("F2") + "s";
-        recordTiempoN2Text.text = "Record Tiempo Nivel 2: " + recordTiempoN2.ToString("F2") + "s";
+        recordPuntosText.text = " : " + totalRecordPuntos;
+        recordVidasText.text = ": " + totalRecordVidas;
+        recordTiempoN1Text.text = ": " + recordTiempoN1.ToString("F2") + "s";
+        recordTiempoN2Text.text = ": " + recordTiempoN2.ToString("F2") + "s";
 
     }
 }

@@ -21,6 +21,9 @@ public class playerControler : MonoBehaviour
     public Vector3 v3;
     public LayerMask layer;// detectar la platafora 
     public float distance; //distancia del raycast
+    public Joystick myJoystick;
+    public bool android;
+    public float inputHorizontal; 
 
 
 
@@ -40,7 +43,14 @@ public class playerControler : MonoBehaviour
     {
         Detectar_Plataforma();
         ProcesarMovimiento();
-        ProcesarSalto();    
+        if(EstaSuelo()|| CheckCollision)
+        {
+            
+            saltosRestantes = saltosMaximos;
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) { 
+            ProcesarSalto();
+        }
     }
     bool EstaSuelo()
     {
@@ -51,14 +61,14 @@ public class playerControler : MonoBehaviour
         }
         return rycasHit.collider != null;
     }
-    void ProcesarSalto()
+    public void ProcesarSalto()
     {
         if(EstaSuelo()|| CheckCollision)
         {
             saltosRestantes = saltosMaximos;
         }
         //COMPROBAR SI SE PULSA EL ESPACIO
-        if (Input.GetKeyDown(KeyCode.Space) && saltosRestantes>1)
+        if (saltosRestantes>1)
         {
             saltosRestantes--;
             rgby.velocity = new Vector2 (rgby.velocity.x, 0f);
@@ -75,8 +85,15 @@ public class playerControler : MonoBehaviour
             return;
         }
         // Obtener la entrada horizontal.
-        
-        float inputHorizontal = Input.GetAxis("Horizontal");
+        if (android)
+        {
+            inputHorizontal = myJoystick.Horizontal;
+        }
+        else
+        {
+            inputHorizontal = Input.GetAxis("Horizontal"); 
+        }
+    
         if((inputHorizontal != 0 && EstaSuelo())|| CheckCollision)// comprobar que est aen el suelo o en una platafora
         {
             animator.SetBool("isWalking", true);

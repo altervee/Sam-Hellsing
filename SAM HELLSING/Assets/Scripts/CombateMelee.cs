@@ -7,8 +7,8 @@ public class CombateMelee : MonoBehaviour
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
     [SerializeField] private float dañoGolpe;
-    [SerializeField] private float tiempoEntreAtaques;
-    [SerializeField] private float tiempoSiguienteAtaque;
+    public float tiempoEntreAtaques = 1.0f; // Tiempo entre ataques en segundos
+    private float tiempoSiguienteAtaque = 0f;
     private Animator animator;
     public AudioClip sonidAtaque;
 
@@ -24,15 +24,17 @@ public class CombateMelee : MonoBehaviour
             tiempoSiguienteAtaque -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Fire1") && tiempoSiguienteAtaque <= 0)
+        // Verificar si se ha presionado el botón de ataque y si se puede atacar
+        if (Input.GetButtonDown("Fire1") && tiempoSiguienteAtaque <= 0f)
         {
             Ataque();
-            tiempoSiguienteAtaque = tiempoEntreAtaques;
+            tiempoSiguienteAtaque = tiempoEntreAtaques; // Reiniciar el tiempo hasta el próximo ataque
         }
     }
 
-    private void Ataque()
+    public void Ataque()
     {
+        
         animator.SetTrigger("Ataque");
         AudioManager.Instance.ReproducirSonido(sonidAtaque);
 
@@ -81,6 +83,7 @@ public class CombateMelee : MonoBehaviour
                 }
             }
         }
+
     }
     // ver el circulo del daño del jugador 
     private void OnDrawGizmos()
